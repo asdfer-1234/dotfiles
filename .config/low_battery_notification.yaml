@@ -1,0 +1,4 @@
+message: Low battery
+urgency: critical
+update_time: 1
+alert_battery: 0.15
