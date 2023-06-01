@@ -6,10 +6,10 @@ window:
 
 font:
   normal:
-    family: JetBrainsMono
+    family: xos4 Terminus
     style: Regular
 
-  size: 12
+  size: 16
 
 colors:
   primary:
