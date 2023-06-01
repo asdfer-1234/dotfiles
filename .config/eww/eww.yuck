@@ -1,0 +1,30 @@
+(defpoll volume :interval "1s"
+	`./volume.sh`)
+(defpoll time :interval "1s"
+	`./time.sh`)
+(defpoll battery :interval "1s"
+	`./battery.sh`)
+(defpoll resource :interval "1s"
+	`./resource.sh`)
+
+
+
+(defwidget status_layout[]
+	(box :orientation "vertical"
+	(label :class "status-volume" :text volume :halign "start")
+	(label :class "status-time" :text time :halign "start")
+	(label :class "status-battery" :text battery :halign "start")
+	(label :class "status-resource" :text resource :halign "start")
+	)
+)
+(defwindow status
+	:monitor 0
+	:stacking "fg"
+	:windowtype "normal"
+	:wm-ignore false
+	:geometry (geometry
+		:width "100"
+		:y "90%"
+		:x "100")
+	(status_layout)
+)

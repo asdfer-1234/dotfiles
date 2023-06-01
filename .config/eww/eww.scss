@@ -1,0 +1,26 @@
+window {
+	background: #282828;
+	color: #7c6f64;
+	border: 1px solid;
+}
+
+* {
+	font-family: "Terminus", "Symbols Nerd Font Mono";
+	font-weight: bold;
+}
+
+.status-volume {
+	color: #fb4934;
+}
+
+.status-battery {
+	color: #fabd2f;
+}
+
+.status-time {
+	color: #b8bb26;
+}
+
+.status-resource {
+	color: #83a598;
+}
