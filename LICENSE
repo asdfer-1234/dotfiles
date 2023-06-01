@@ -2,7 +2,7 @@ You can use the configuration I made however you want.
 
 But there are files copyrighted by others / forked from it.
 
-/.config/nvim is a fork of nvim-lua/kickstajort.nvim. So `diff` their repo and mine and you may use whatever is different from the original. The original kickstart.nvim uses on the following license.
+/.config/nvim is a fork of nvim-lua/kickstart.nvim. So `diff` their repo and mine and you may use whatever is different from the original. The original kickstart.nvim uses on the following license.
 
 	MIT License
 

@@ -6,19 +6,10 @@ window:
 
 font:
   normal:
-    family: xos4 Terminus
+    family: JetBrainsMono
     style: Regular
-  italic:
-    family: xos4 Terminus
-    style: Italic
-  bold:
-    family: xos4 Terminus
-    style: Bold
-  bold_italic:
-    family: xos4 Terminus
-    style: Bold Italic
 
-  size: 7
+  size: 12
 
 colors:
   primary:

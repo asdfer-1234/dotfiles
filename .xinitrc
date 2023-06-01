@@ -3,7 +3,7 @@
 # .Xresources provide colorschemes for dwm and st
 xrdb merge ~/.Xresources
 
-# autohotkey alternative to linux
+# Key
 keymapper -u &
 
 # hide mouse cursor
@@ -41,12 +41,13 @@ redshift &
 # dwm status bar
 bash ~/personal/programming/rice/dwm-bar/dwm_bar.sh &
 
-# discord
-discord &
-
 # java envs
 export _JAVA_AWT_WM_NONREPARENTING=1
 export AWT_TOOLKIT=MToolkit
+
+# discord
+discord &
+
 
 # window manager
 #exec /home/asdfer/personal/programming/rice/overlapwm/overlapwm
