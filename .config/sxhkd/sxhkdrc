@@ -35,5 +35,5 @@ super + shift + q
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
-super + {u, i, o}
-	bspc node @focused:/ --rotate {90, 180, 270}
+super + o
+	bspc node @focused:/ --rotate 90

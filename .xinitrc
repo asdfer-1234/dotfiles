@@ -4,7 +4,7 @@
 xrdb merge ~/.Xresources
 
 # Key
-#keymapper -u &
+keymapper &
 
 # hide mouse cursor
 unclutter --start-hidden --ignore-scrolling --jitter 10 --timeout 3 &
@@ -20,7 +20,7 @@ fcitx5 &
 xset r rate 200 30
 
 # background to fill whole screen 1px image
-feh --no-fehbg --bg-scale /home/asdfer/personal/Backgroundable\ Things/dotgrid.png
+feh --no-fehbg --bg-tile /home/asdfer/personal/background/dotgrid.png
 
 # no middle click paste
 xmousepasteblock &
@@ -49,8 +49,7 @@ export AWT_TOOLKIT=MToolkit
 discord &
 alacritty &
 
-
 # window manager
 #exec /home/asdfer/personal/programming/rice/overlapwm/overlapwm
 #exec dwm
-exec bspwm -c ~/.config/bspwm/bspwmrc
+exec bspwm
