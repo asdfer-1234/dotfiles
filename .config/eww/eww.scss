@@ -1,10 +1,5 @@
-window {
-	background: #282828;
-	color: #7c6f64;
-	border: 1px solid;
-}
-
 * {
+	all: unset;
 	font-family: "Terminus", "Symbols Nerd Font Mono";
 	font-weight: bold;
 }
@@ -24,3 +19,13 @@ window {
 .status-resource {
 	color: #83a598;
 }
+
+window {
+	background: #282828;
+	color: #7c6f64;
+	border: 2px solid;
+}
+window > * {
+	padding: 6px;
+}
+

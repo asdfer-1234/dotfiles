@@ -1,0 +1,18 @@
+#!/bin/sh
+set -v
+execute=$(tofi-run --config /home/asdfer/.config/tofitheme --require-match=false)
+if [ $? = 0 ]; then
+	terminal=( htop nvim vim absolutely-proprietary ranger alsamixer calcurse nmtui newsboat nmtui-connect nmtui-hostname nmtui-edit )
+	isterminal=false
+	for fn in ${terminal[@]}; do
+		if [ $(echo ${execute} | awk '{print $1;}') == ${fn} ]; then
+			isterminal=true
+			break
+		fi
+	done
+	if [ ${isterminal} = true ]; then
+		alacritty -e ${execute} &
+	else
+		echo ${execute} | ${SHELL:-"/bin/sh"} &
+	fi
+fi

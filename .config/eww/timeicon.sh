@@ -48,5 +48,3 @@ elif (( HOUR <= 22 )); then
 elif (( HOUR <= 23 )); then
 	printf "󱑕"
 fi
-
-printf "%s" "$(date "+%T")"

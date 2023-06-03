@@ -1,20 +1,36 @@
+(defpoll volumeicon :interval "1s" `./volumeicon.sh`)
 (defpoll volume :interval "1s"
 	`./volume.sh`)
-(defpoll time :interval "1s"
-	`./time.sh`)
+(defpoll timeicon :interval "1s"
+	`./timeicon.sh`)
+(defpoll time :interval "1s" `date +%T`)
+(defpoll batteryicon :interval "1s" `./batteryicon.sh`)
 (defpoll battery :interval "1s"
 	`./battery.sh`)
-(defpoll resource :interval "1s"
-	`./resource.sh`)
 
-
+(defwidget status_property[icon value]
+	(box :orientation "horizontal" :space-evenly false :spacing 10
+		(label :class "status-icon" :halign "fill" :text icon)
+		(label :class "status-value" :halign "baseline" :text value)
+	)
+)
 
 (defwidget status_layout[]
-	(box :orientation "vertical"
-	(label :class "status-volume" :text volume :halign "start")
-	(label :class "status-time" :text time :halign "start")
-	(label :class "status-battery" :text battery :halign "start")
-	(label :class "status-resource" :text resource :halign "start")
+	(box :orientation "vertical" :space-evenly false
+		(box :class "status-volume"
+			(status_property :icon volumeicon :value volume)
+		)
+		(box :class "status-battery"
+			(status_property :class "status-battery" :icon batteryicon :value battery)
+		)
+		(box :class "status-time"
+			(status_property :class "status-time" :icon timeicon :value time)
+		)
+		(box :class "status-resource" :orientation "vertical"
+			(status_property :icon "RAM" :value {round(EWW_RAM.used_mem_perc, 0)})
+			(status_property :icon "CPU" :value {round(EWW_CPU.avg, 0)})
+			(status_property :icon "STO" :value {round(EWW_DISK["/"].used_perc, 0)})
+		)
 	)
 )
 (defwindow status
@@ -24,7 +40,8 @@
 	:wm-ignore false
 	:geometry (geometry
 		:width "100"
-		:y "90%"
-		:x "100")
+		:y "10%"
+		:x "80%"
+	)
 	(status_layout)
 )

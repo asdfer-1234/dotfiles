@@ -16,4 +16,3 @@ echo -en "\e]PDD3869B" #magenta
 echo -en "\e]PE8EC07C" #cyan
 echo -en "\e]PFEBDBB2" #white
 clear #for background artifacting
-Hyprland

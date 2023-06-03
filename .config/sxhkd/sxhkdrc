@@ -1,0 +1,39 @@
+super + {_,alt + }{h, j, k, l}
+	bspc node -{f,s} {west,south,north,east}
+
+
+super + shift + {h, j, k, l}
+	bspc node -z {left -200 0 || bspc node -z right -200 0, \
+		bottom 0 200 || bspc node -z top 0 200, \
+		top 0 -200 || bspc node -z bottom 0 -200, \
+		right 200 0 || bspc node -z left 200 0}
+
+super + w
+	bspc node -k
+
+super + Return
+	alacritty
+
+super + a
+	firefox-nightly
+
+super + s
+	screenshot
+
+super + d
+	discord
+
+super + space
+	dmenu_run
+
+super + shift + space
+	dmenu_exit
+
+super + shift + q
+	bspc quit
+
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+super + {u, i, o}
+	bspc node @focused:/ --rotate {90, 180, 270}
