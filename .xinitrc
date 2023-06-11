@@ -47,7 +47,6 @@ export AWT_TOOLKIT=MToolkit
 
 # discord
 discord &
-alacritty &
 
 # window manager
 #exec /home/asdfer/personal/programming/rice/overlapwm/overlapwm

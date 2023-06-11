@@ -10,6 +10,7 @@ alias diff='diff --color=auto'
 alias ranger='. ranger'
 alias vim='nvim'
 alias cd='cd -P'
+alias clear='blear'
 export LESS='-R --use-color -Dd+y$Du+g'
 
 # shortcut aliases
@@ -33,6 +34,14 @@ alias dd='dragon-drop -x'
 # idk man. without this alias the whole system would break
 alias 2023='echo YEAR OF THE LINUX DESKTOP'
 
+exitstatus(){
+	if [[ $? == 0 ]]; then
+		whoami
+	else
+		echo $?
+	fi
+}
+
 # prompt customization
 BOLD="$(tput bold)"
 RESET="$(tput sgr0)"
@@ -43,6 +52,8 @@ LGRAY="$(tput setaf 8)"
 BLINK="$(tput blink)"
 PROMPT="$(tput setaf 10)"
 PS0='\[$RESET\]'
-PS1='\[$LGRAY\]┌\[$BOLD\]\[$WHITE\][\[$CYAN\]$(dirs)\[$RESET\]\[$BOLD\]]\n\[$RESET\]\[$LGRAY\]└\[$BOLD\]\[$WHITE\][\[$YELLOW\]\$\[$RESET\]\[$BOLD\]] \[$RESET\]\[$PROMPT\]'
+PS1='\[$LGRAY\]┌\[$BOLD\]\[$WHITE\][\[$CYAN\]$(dirs)\[$RESET\]\[$BOLD\]]\n\[$RESET\]\[$LGRAY\]└\[$BOLD\]\[$WHITE\][\[$YELLOW\]$(exitstatus)\[$RESET\]\[$BOLD\]] \[$RESET\]\[$PROMPT\]'
 PS2='\[$LGRAY\]└─── \[$RESET\]\[$PROMPT\]'
 
+# always keep the cursor to the bottom of the screen!!!!
+blear

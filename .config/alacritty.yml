@@ -6,10 +6,20 @@ window:
 
 font:
   normal:
-    family: xos4 Terminus
+    family: scientifica
     style: Regular
+  bold_italic:
+    family: scientifica
+    style: Italic
 
-  size: 16
+  size: 8.5
+  offset:
+    x: 0
+    y: -2
+  glyph_offset:
+    y: -1
+
+  builtin_box_drawing: false
 
 colors:
   primary:
