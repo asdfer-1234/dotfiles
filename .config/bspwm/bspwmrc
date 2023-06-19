@@ -12,8 +12,6 @@ bspc config borderless_monocle true
 bspc config gapless_monocle true
 
 bspc config click_to_focus any
-bspc config pointer_follows_focus true
-bspc config pointer_follows_monitor true
 
 bspc rule -a discord desktop=^4 follow=off
 bspc rule -a deadbeef desktop=^9
