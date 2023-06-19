@@ -12,12 +12,7 @@ font:
     family: scientifica
     style: Italic
 
-  size: 8.5
-  offset:
-    x: 0
-    y: -2
-  glyph_offset:
-    y: -1
+  size: 8
 
   builtin_box_drawing: false
 

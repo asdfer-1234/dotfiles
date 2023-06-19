@@ -48,6 +48,9 @@ export AWT_TOOLKIT=MToolkit
 # discord
 discord &
 
+# set default cursor
+xsetroot -cursor-name cross
+
 # window manager
 #exec /home/asdfer/personal/programming/rice/overlapwm/overlapwm
 #exec dwm
