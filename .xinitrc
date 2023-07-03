@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # .Xresources provide colorschemes for dwm and st
 xrdb merge ~/.Xresources
@@ -39,7 +39,7 @@ low-battery-notification &
 redshift &
 
 # dwm status bar
-bash ~/personal/programming/rice/dwm-bar/dwm_bar.sh &
+#bash ~/personal/programming/rice/dwm-bar/dwm_bar.sh &
 
 # java envs
 export _JAVA_AWT_WM_NONREPARENTING=1
@@ -49,7 +49,7 @@ export AWT_TOOLKIT=MToolkit
 discord &
 
 # set default cursor
-xsetroot -cursor-name cross
+xsetroot -cursor_name cross
 
 # window manager
 #exec /home/asdfer/personal/programming/rice/overlapwm/overlapwm

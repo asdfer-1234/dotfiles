@@ -12,6 +12,7 @@ alias vim='nvim'
 alias cd='cd -P'
 alias clear='blear'
 export LESS='-R --use-color -Dd+y$Du+g'
+eval "$(thefuck --alias)"
 
 # shortcut aliases
 alias ga='git add'
@@ -29,7 +30,7 @@ mkcdir () {
 }
 
 alias md='mkcdir'
-alias dd='dragon-drop -x'
+alias ddx='dragon-drop -x'
 
 # idk man. without this alias the whole system would break
 alias 2023='echo YEAR OF THE LINUX DESKTOP'

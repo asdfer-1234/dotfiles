@@ -2,7 +2,6 @@
 
 [resource]
 interface/editor/code_font_size = 18.0
-interface/editor/single_window_mode = true
 interface/theme/preset = "Custom"
 interface/theme/base_color = Color(0.168627, 0.168627, 0.168627, 1)
 interface/theme/accent_color = Color(0.286275, 0.658824, 1, 1)

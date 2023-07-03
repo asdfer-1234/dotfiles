@@ -1,7 +1,6 @@
 * {
 	all: unset;
-	font-family: "Terminus", "Symbols Nerd Font Mono";
-	font-weight: bold;
+	font-family: "Cozette";
 }
 
 .status-volume {
@@ -20,10 +19,22 @@
 	color: #83a598;
 }
 
+.block {
+	background: #3c3836;
+	padding: 5px 8px 5px 8px;
+}
+
+.date {
+	color: #b16286
+}
+
+.time {
+	color: #98971a;
+}
+
 window {
 	background: #282828;
 	color: #7c6f64;
-	border: 2px solid;
 }
 window > * {
 	padding: 6px;
