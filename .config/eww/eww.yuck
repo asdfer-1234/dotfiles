@@ -1,86 +1,61 @@
-(defpoll volume :interval "1s"
-	`./volume.sh`)
-
+(defpoll volume :interval "1s" `./volume.sh`)
 (defpoll daytype :interval "1s" "date +%d")
 (defpoll day :interval "1s" "date +%a")
 (defpoll hour :interval "1s" "date +%H")
 (defpoll min :interval "1s" "date +%M")
 (defpoll sec :interval "1s" "date +%S")
 (defpoll batteryicon :interval "1s" `./batteryicon.sh`)
-(defpoll battery :interval "10s"
-	`./battery.sh`)
+(defpoll battery :interval "10s" `./battery.sh`)
 (defpoll batterystatus :interval "10s" `./batterystatus.sh`)
+(defpoll workspaces :interval "1s" `./workspaces.sh`)
 
 (defwidget status_property[icon value]
 	(box :orientation "vertical" :space-evenly false :spacing 0 :class "block"
 		(label :class "status-icon" :halign "center" :text icon)
-		(label :class "status-value" :halign "center" :text value)
-	)
-)
+		(label :class "status-value" :halign "center" :text value)))
 
 (defwidget time[]
 	(box :orientation "vertical" :spacing 8 :space-evenly false
 		(box :class "block"
 			(box :orientation "vertical" :class "date"
 				(label :text daytype)
-				(label :text day)
-			)
-		)
+				(label :text day)))
 		(box :class "block"
 			(box :orientation "vertical" :class "time"
 				(label :text hour)
 				(label :text min)
-				(label :text sec)
-			)
-		)
-	)
-)
+				(label :text sec)))))
 
-(defwidget workspace[]
-	(box :orientation "vertical" :spacing 0
-		(label :text "1")
-		(label :text "2")
-		(label :text "3")
-		(label :text "4")
-		(label :text "5")
-		(label :text "6")
-		(label :text "7")
-		(label :text "8")
-		(label :text "9")
-	)
-)
+(defwidget workspace[name status]
+	(button
+		:class {status == "focused" ? "focused" : "workspace"}
+		:onclick {"wmctrl -s " + (name - 1) + " ; eww update workspaces=$(./workspaces.sh)"}
+		:visible {status != "inactive"}
+		name))
+
+(defwidget workspaces[]
+	(literal :content workspaces))
 
 (defwidget status_layout[]
 	(centerbox :orientation "vertical"
-	(workspace :valign "start")
-	(time)
-	(box :orientation "vertical" :spacing 8 :valign "end"
-		(box :class "status-volume" :visible {volume != ""}
-			(status_property :icon "" :value volume)
-		)
-		(box :class "status-battery" :visible {batterystatus != "Full"}
-			(status_property :class "status-battery" :icon batteryicon :value battery)
-		)
-		(box :class "status-resource"
-			(status_property :icon "RAM" :value {round(EWW_RAM.used_mem_perc, 0)})
-		)
-		(box :class "status-resource"
-			(status_property :icon "CPU" :value {round(EWW_CPU.avg, 0)})
-		)
-		;; (box :class "status-resource"
-		;; 	(status_property :icon "STO" :value {round(EWW_DISK["/"].used_perc, 0)})
-		;; )
-	))
-)
+		(workspaces :valign "start")
+		(time)
+		(box :orientation "vertical" :spacing 8 :valign "end"
+			(box :class "status-volume" :visible {volume != ""}
+				(status_property :icon "" :value volume))
+			(box :class "status-battery" :visible {batterystatus != "Full"}
+				(status_property :class "status-battery" :icon batteryicon :value battery))
+			(box :class "status-resource"
+				(status_property :icon "RAM" :value {round(EWW_RAM.used_mem_perc, 0)}))
+			(box :class "status-resource"
+				(status_property :icon "CPU" :value {round(EWW_CPU.avg, 0)})))))
 (defwindow status
 	:monitor 0
 	:windowtype "dock"
 	:geometry (geometry
 		:y 0
 		:x 0
-		:height "100%"
-	)
-	:reserve (struts :distance "40px" :side "left")
-	:wm-ignore true
-	(status_layout)
-)
+		:height "100%")
+	:reserve (struts :distance "49px" :side "left")
+	:stacking "bg"
+	(status_layout))

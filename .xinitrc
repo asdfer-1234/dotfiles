@@ -20,7 +20,8 @@ fcitx5 &
 xset r rate 200 30
 
 # background to fill whole screen 1px image
-feh --no-fehbg --bg-tile /home/asdfer/personal/background/dotgrid.png
+#feh --no-fehbg --bg-tile /home/asdfer/personal/background/dotgrid.png
+feh --no-fehbg --bg-tile /home/asdfer/personal/background/black.png
 
 # no middle click paste
 xmousepasteblock &
@@ -46,10 +47,10 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export AWT_TOOLKIT=MToolkit
 
 # discord
-discord &
+#discord &
 
 # set default cursor
-xsetroot -cursor_name cross
+xsetroot -cursor_name arrow
 
 # window manager
 #exec /home/asdfer/personal/programming/rice/overlapwm/overlapwm

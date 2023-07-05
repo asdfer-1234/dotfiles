@@ -20,7 +20,7 @@
 }
 
 .block {
-	background: #3c3836;
+	background: #ffffff;
 	padding: 5px 8px 5px 8px;
 }
 
@@ -32,11 +32,19 @@
 	color: #98971a;
 }
 
+.workspace {
+	background: #ffffff;
+}
+
+.focused {
+	background: #ff0000;
+}
+
 window {
-	background: #282828;
-	color: #7c6f64;
+	background: #000000;
+	color: #000000;
 }
 window > * {
-	padding: 6px;
+	padding: 0px 8px 0px 0px;
 }
 
