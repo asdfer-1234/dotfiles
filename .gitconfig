@@ -12,3 +12,5 @@
 [user]
 	email = <sh__lv@naver.com>
 	name = asdfer-1234
+[branch]
+	autoSetupMerge = true

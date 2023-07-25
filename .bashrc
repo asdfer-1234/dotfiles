@@ -14,6 +14,8 @@ alias clear='blear'
 export LESS='-R --use-color -Dd+y$Du+g'
 eval "$(thefuck --alias)"
 export MANPAGER='nvim +Man!'
+alias yay='paru'
+alias aur='paru'
 
 # shortcut aliases
 alias ga='git add'

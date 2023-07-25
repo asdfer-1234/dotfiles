@@ -7,7 +7,7 @@
 (defpoll batteryicon :interval "1s" `./batteryicon.sh`)
 (defpoll battery :interval "10s" `./battery.sh`)
 (defpoll batterystatus :interval "10s" `./batterystatus.sh`)
-(defpoll workspaces :interval "1s" `./workspaces.sh`)
+(defvar workspaces "")
 
 (defwidget status_property[icon value]
 	(box :orientation "vertical" :space-evenly false :spacing 0 :class "block"
@@ -15,7 +15,7 @@
 		(label :class "status-value" :halign "center" :text value)))
 
 (defwidget time[]
-	(box :orientation "vertical" :spacing 8 :space-evenly false
+	(box :orientation "vertical" :spacing 4 :space-evenly false
 		(box :class "block"
 			(box :orientation "vertical" :class "date"
 				(label :text daytype)
@@ -31,6 +31,8 @@
 		:class {status == "focused" ? "focused" : "workspace"}
 		:onclick {"wmctrl -s " + (name - 1) + " ; eww update workspaces=$(./workspaces.sh)"}
 		:visible {status != "inactive"}
+		:hexpand false
+		:vexpand false
 		name))
 
 (defwidget workspaces[]
@@ -40,7 +42,7 @@
 	(centerbox :orientation "vertical"
 		(workspaces :valign "start")
 		(time)
-		(box :orientation "vertical" :spacing 8 :valign "end"
+		(box :orientation "vertical" :spacing 4 :valign "end"
 			(box :class "status-volume" :visible {volume != ""}
 				(status_property :icon "" :value volume))
 			(box :class "status-battery" :visible {batterystatus != "Full"}
@@ -56,6 +58,8 @@
 		:y 0
 		:x 0
 		:height "100%")
-	:reserve (struts :distance "49px" :side "left")
+	:reserve (struts :distance "39px" :side "left")
 	:stacking "bg"
 	(status_layout))
+
+

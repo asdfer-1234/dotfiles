@@ -1,6 +1,6 @@
 #!/bin/sh
-eww open status
-bspc monitor -d 1 2 3 4 5 6 7 8 9
+bspc monitor eDP-1 -d 1 2 3 4 5 6 7 8 9
+# bspc monitor HDMI-1-1 -d 1 2 3 4 5 6 7 8 9
 bspc config border_width 2
 bspc config window_gap 8
 bspc config normal_border_color "#504945"
@@ -16,8 +16,10 @@ bspc config click_to_focus any
 bspc rule -a discord desktop=^4 follow=off
 bspc rule -a deadbeef desktop=^9
 
-g="$(bspc config window_gap)"
-[[ "$g" -gt 0 ]] && for p in top bottom left right; do
-    bspc config "${p}_padding" "-${g}"
-    bspc config "${p}_monocle_padding" "$g"
-done
+~/.config/eww/start.sh
+
+# g="$(bspc config window_gap)"
+# [[ "$g" -gt 0 ]] && for p in top bottom left right; do
+#     bspc config "${p}_padding" "-${g}"
+#     bspc config "${p}_monocle_padding" "$g"
+# done

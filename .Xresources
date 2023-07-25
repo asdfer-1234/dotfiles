@@ -35,6 +35,8 @@
 *color7:  #a89984
 *color15: #ebdbb2
 
+Xcursor.size: 32
+
 ! Terminal cursor
 *cursorColor: #b8bb26
 

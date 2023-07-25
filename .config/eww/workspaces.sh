@@ -6,18 +6,13 @@ workspaces() {
 		workspace_names+=( $line )
 	done < <(bspc query -D --names)
 
-	# Unoccupied
-	un="0"
-
 	workspace_status=()
-
-
-	for i in ${workspace_names[@]}
+	for i in "${workspace_names[@]}"
 	do
 
-		if [ $(bspc query -D -d focused --names | grep $i) ]; then
+		if [ "$(bspc query -D -d focused --names | grep "$i")" ]; then
 			workspace_status+=( focused )
-		elif [ $(bspc query -D -d .occupied --names | grep $i) ]; then
+		elif [ "$(bspc query -D -d .occupied --names | grep "$i")" ]; then
 			workspace_status+=( occupied )
 		else
 			workspace_status+=( inactive )
@@ -26,13 +21,22 @@ workspaces() {
 
 	declare -i index=0
 
-	echo "(box :orientation \"vertical\" :spacing 8"
+	printf "(box :orientation \"vertical\" :spacing 8 :space-evenly false"
 
-	for i in ${workspace_status[@]}
+	for i in "${workspace_status[@]}"
 	do
-		echo "(workspace :name ${workspace_names[$index]} :status \"$i\")"
+		printf "(workspace :name ${workspace_names[$index]} :status \"$i\")"
 		index+=1
 	done
-	echo ")"
+	printf ")"
 }
-workspaces
+
+update_workspaces() {
+	eww update workspaces="$(workspaces)"
+}
+
+update_workspaces
+
+xprop -spy -root _NET_CURRENT_DESKTOP | while read -r; do
+	update_workspaces
+done

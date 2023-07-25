@@ -1,5 +1,9 @@
 #!/bin/sh
 
+if [ "$(xrandr -q | grep 'HDMI-1-1 connected')" ]; then
+	xrandr --output eDP-1 --primary --auto --rotate normal --output HDMI-1-1 --auto --rotate normal --above eDP-1
+fi
+
 # .Xresources provide colorschemes for dwm and st
 xrdb merge ~/.Xresources
 
@@ -11,6 +15,7 @@ unclutter --start-hidden --ignore-scrolling --jitter 10 --timeout 3 &
 
 # compositor
 #picom --animations --animation-for-open-window=zoom --animation-stiffness=400 --animation-dampening=40 --animation-dampening=25 &
+#picom --shadow &
 picom &
 
 # ime manager for fcitx5-hangul input
@@ -21,7 +26,8 @@ xset r rate 200 30
 
 # background to fill whole screen 1px image
 #feh --no-fehbg --bg-tile /home/asdfer/personal/background/dotgrid.png
-feh --no-fehbg --bg-tile /home/asdfer/personal/background/black.png
+#feh --no-fehbg --bg-tile /home/asdfer/personal/background/black.png
+feh --no-fehbg --bg-scale /home/asdfer/personal/background/nick-nazzaro-space-blue.png
 
 # no middle click paste
 xmousepasteblock &
@@ -50,7 +56,7 @@ export AWT_TOOLKIT=MToolkit
 #discord &
 
 # set default cursor
-xsetroot -cursor_name arrow
+xsetroot -cursor_name left_ptr
 
 # window manager
 #exec /home/asdfer/personal/programming/rice/overlapwm/overlapwm

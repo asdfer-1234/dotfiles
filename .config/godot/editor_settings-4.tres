@@ -82,10 +82,6 @@ interface/editors/derive_script_globals_by_name = true
 _use_favorites_root_selection = false
 filesystem/file_server/port = 6010
 filesystem/file_server/password = ""
-debugger/auto_switch_to_remote_scene_tree = false
-debugger/profiler_frame_max_functions = 64
-debugger/remote_scene_tree_refresh_interval = 1.0
-debugger/remote_inspect_refresh_interval = 0.2
 editors/3d/manipulator_gizmo_size = 80
 editors/3d/manipulator_gizmo_opacity = 0.9
 editors/3d/navigation/show_viewport_rotation_gizmo = true
@@ -150,6 +146,7 @@ text_editor/theme/highlighting/gdscript/annotation_color = Color(1, 0.7, 0.45, 1
 text_editor/theme/highlighting/gdscript/string_name_color = Color(1, 0.76, 0.65, 1)
 text_editor/help/sort_functions_alphabetically = true
 text_editor/theme/base_color = Color(0.903598, 0.903598, 0.903598, 1)
+docks/scene_tree/ask_before_deleting_related_animation_tracks = true
 metadata/script_setup_templates_dictionary = {
 "AudioStreamPlayer": "0NodeDefault",
 "CollisionShape3D": "0NodeDefault",

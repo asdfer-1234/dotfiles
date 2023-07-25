@@ -20,8 +20,8 @@
 }
 
 .block {
-	background: #ffffff;
-	padding: 5px 8px 5px 8px;
+	background: #504945;
+	padding: 4px 4px 4px 4px;
 }
 
 .date {
@@ -33,18 +33,24 @@
 }
 
 .workspace {
-	background: #ffffff;
+	background: #504945;
+	color: #d5c4a1;
+	padding: 4px;
 }
 
 .focused {
-	background: #ff0000;
+	background: #8ec07c;
+	padding: 4px;
 }
 
+
 window {
-	background: #000000;
-	color: #000000;
+	background: #282828;
+	color: #504945;
+	border-width: 0px 2px 0px 0px;
+	border-style: none dotted none none;
 }
 window > * {
-	padding: 0px 8px 0px 0px;
+	padding: 4px 6px 4px 4px;
 }
 
