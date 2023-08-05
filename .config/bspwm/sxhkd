@@ -1,0 +1,66 @@
+super + shift + q
+	bspc quit
+
+super + w
+	bspc node -c
+
+super + {l, j, k, i}
+	bspc node -f {east, west, south, north}
+
+super + alt + {l, j, k, i}
+	bspc node -s {right, left, down, up}
+
+super + ctrl + {l, j, k, i}
+	bspc node -v {20 0, -20 0, 0 20, 0 -20}
+
+super + shift + {l, j, k, i}
+	step=200 \
+	{ d1=right; d2=left; dx=$step; dy=0; \
+	, d1=right; d2=left; dx=-$step; dy=0; \
+	, d1=bottom; d2=top; dx=0; dy=$step; \
+	, d1=bottom; d2=top; dx=0; dy=-$step; \
+	} \
+	bspc node --resize $d1 $dx $dy || bspc node --resize $d2 $dx $dy
+
+super + {u, o}
+	bspc node '@parent' -R {-90, 90}
+
+super + {1, 2, 3, 4, 5, 6, 7, 8, 9}
+	bspc desktop -f {1, 2, 3, 4, 5, 6, 7, 8, 9}
+
+super + shift + {1, 2, 3, 4, 5, 6, 7, 8, 9}
+	bspc node -d {1, 2, 3, 4, 5, 6, 7, 8, 9}
+
+super + {m, comma, period}
+	bspc node -t {tiled, fullscreen, floating}
+
+super + space
+	dmenu_run
+
+super + shift + space
+	dmenu_exit
+
+
+super + Return
+	alacritty
+
+super + a
+	firefox
+
+super + s
+	screenshot
+
+super + d
+	discord
+
+super + {r, f}
+	amixer -q set Master {5%+, 5%-} unmute
+
+super + v
+	amixer -q set Master toggle
+
+super + {t, g}
+	light {-A, -U} 5
+
+super + b
+	light -S 100

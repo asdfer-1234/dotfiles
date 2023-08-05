@@ -11,17 +11,18 @@
 	color: #fabd2f;
 }
 
-.status-time {
-	color: #b8bb26;
-}
-
 .status-resource {
 	color: #83a598;
 }
 
 .block {
 	background: #504945;
-	padding: 4px 4px 4px 4px;
+	padding: 3px 4px 3px 4px;
+}
+
+.secondary-block {
+	background: #3c3836;
+	padding: 3px 4px 3px 4px;
 }
 
 .date {
@@ -33,14 +34,14 @@
 }
 
 .workspace {
-	background: #504945;
 	color: #d5c4a1;
-	padding: 4px;
+	padding: 3px 4px 3px 4px;
 }
 
 .focused {
 	background: #8ec07c;
-	padding: 4px;
+	padding: 8px 4px 8px 4px;
+	font-weight: bold;
 }
 
 

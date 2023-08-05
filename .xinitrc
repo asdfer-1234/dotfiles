@@ -8,7 +8,8 @@ fi
 xrdb merge ~/.Xresources
 
 # Key
-keymapper &
+# keymapper &
+kanata -c ~/.config/kanata/kbd &
 
 # hide mouse cursor
 unclutter --start-hidden --ignore-scrolling --jitter 10 --timeout 3 &

@@ -3,7 +3,9 @@
 (defpoll day :interval "1s" "date +%a")
 (defpoll hour :interval "1s" "date +%H")
 (defpoll min :interval "1s" "date +%M")
-(defpoll sec :interval "1s" "date +%S")
+(defpoll indiahour :interval "1s" "env TZ=Asia/Kolkata date +%H")
+(defpoll indiamin :interval "1s" "env TZ=Asia/Kolkata date +%M")
+(defpoll europehour :interval "1s" "env TZ=Europe/Berlin date +%H")
 (defpoll batteryicon :interval "1s" `./batteryicon.sh`)
 (defpoll battery :interval "10s" `./battery.sh`)
 (defpoll batterystatus :interval "10s" `./batterystatus.sh`)
@@ -23,8 +25,15 @@
 		(box :class "block"
 			(box :orientation "vertical" :class "time"
 				(label :text hour)
-				(label :text min)
-				(label :text sec)))))
+				(label :text min)))
+		(box :class "secondary-block"
+			(box :orientation "vertical" :class "time"
+				(label :text indiahour)
+				(label :text indiamin)))
+		(box :class "secondary-block"
+			(box :orientation "vertical" :class "time"
+				(label :text europehour)
+				(label :text min)))))
 
 (defwidget workspace[name status]
 	(button

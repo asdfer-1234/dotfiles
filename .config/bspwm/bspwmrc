@@ -16,10 +16,12 @@ bspc config click_to_focus any
 bspc rule -a discord desktop=^4 follow=off
 bspc rule -a deadbeef desktop=^9
 
-~/.config/eww/start.sh
+sxhkd -c ~/.config/bspwm/sxhkd &
+~/.config/eww/start.sh &
 
 # g="$(bspc config window_gap)"
 # [[ "$g" -gt 0 ]] && for p in top bottom left right; do
 #     bspc config "${p}_padding" "-${g}"
 #     bspc config "${p}_monocle_padding" "$g"
 # done
+
