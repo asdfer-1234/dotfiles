@@ -1,0 +1,195 @@
+(defcfg
+	sequence-timeout 150
+	danger-enable-cmd yes
+)
+
+(defalias
+	ld (layer-switch default)
+	lx (layer-switch none)
+	dspc (tap-hold-press 0 1000 spc (layer-while-held symbols))
+	
+	da (tap-hold 200 200 a (layer-while-held bspwm-focus))
+	ds (tap-hold 200 200 s lalt)
+	dd (tap-hold 200 200 d lsft)
+	df (tap-hold 200 200 f lctl)
+
+	d; (tap-hold 200 200 ; (layer-while-held bspwm-resize))
+	dl (tap-hold 200 200 l ralt)
+	dk (tap-hold 200 200 k rsft)
+	dj (tap-hold 200 200 j rctl)
+
+	de (tap-hold 200 200 e (layer-while-held spawn))
+	dr (tap-hold 200 200 r (layer-while-held media))
+
+	dq (tap-hold 200 200 q (layer-while-held bspwm-swap))
+	dlalt (layer-while-held navigation)
+
+	cw (caps-word 2000)
+
+)
+
+(defsrc esc	f1	f2	f3	f4	f5	f6	f7	f8	f9	f10	f11	f12	pause	del	home	pgup	pgdn	end
+	grv	1	2	3	4	5	6	7	8	9	0	-	=	bspc		nlck	kp/	kp*	kp-
+	tab	q	w	e	r	t	y	u	i	o	p	[	]	\		kp7	kp8	kp9	kp+
+	caps	a	s	d	f	g	h	j	k	l	;	'	ret			kp4	kp5	kp6
+	lsft	z	x	c	v	b	n	m	,	.	/	rsft	up			kp1	kp2	kp3	kprt
+	lctl	lmet	lalt			spc			ralt	menu	rctl	left	down	rght			kp0	kp.
+)
+
+(deflayer default
+	esc	f1	f2	f3	f4	f5	f6	f7	f8	f9	f10	f11	f12	pause	del	home	pgup	pgdn	end
+	grv	1	2	3	4	5	6	7	8	9	0	-	=	bspc		@lx	kp/	kp*	kp-
+	tab	@dq	w	@de	@dr	t	y	u	i	o	p	[	]	\		kp7	kp8	kp9	kp+
+	esc	@da	@ds	@dd	@df	g	h	@dj	@dk	@dl	@d;	'	ret			kp4	kp5	kp6
+	lsft	z	x	c	v	b	n	m	,	.	/	rsft	up			kp1	kp2	kp3	kprt
+	lctl	lmet	@dlalt			@dspc			f13	ralt	rctl	left	down	rght			kp0	kp.
+)
+
+(deflayer none
+	esc	f1	f2	f3	f4	f5	f6	f7	f8	f9	f10	f11	f12	pause	del	home	pgup	pgdn	end
+	grv	1	2	3	4	5	6	7	8	9	0	-	=	bspc		@ld	kp/	kp*	kp-
+	tab	q	w	e	r	t	y	u	i	o	p	[	]	\		kp7	kp8	kp9	kp+
+	caps	a	s	d	f	g	h	j	k	l	;	'	ret			kp4	kp5	kp6
+	lsft	z	x	c	v	b	n	m	,	.	/	rsft	up			kp1	kp2	kp3	kprt
+	lctl	lmet	lalt			spc			ralt	menu	rctl	left	down	rght			kp0	kp.
+)
+
+
+(deflayer navigation
+	caps	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+	_	_	_	_	_	_	_	_	_	_	_	_	_	_		_	_	_	_
+	_	_	_	_	_	_	_	home	up	end	del	_	_	_		_	_	_	_
+	_	lmet	lalt	lsft	lctl	_	_	left	down	rght	bspc	_	_			_	_	_
+	_	_	_	_	_	_	_	@cw	_	_	_	_	_			_	_	_	_
+	_	_	_			_			_	_	_	_	_	_			_	_
+)
+
+(deflayer symbols
+	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+	_	_	_	_	_	_	_	_	_	_	_	_	_	_		_	_	_	_
+	_	S-5	S-8	S-/	S-1	_	_	S-2	S-3	S-\	S-7	_	_	_		_	_	_	_
+	_	S-=	=	-	S--	`	S-`	S-9	S-0	S-[	S-]	_	_			_	_	_
+	_	\	/	S-6	S-4	_	_	[	]	S-,	S-.	_	_			_	_	_	_
+	_	_	_			_			_	_	_	_	_	_			_	_
+)
+
+(defalias
+	sj (cmd emacs)
+	sk (cmd librewolf)
+	sl (cmd alacritty)
+	s; (cmd dmenu_run)
+	sm (cmd webcord)
+	s, (cmd unityhub)
+	s. (cmd alacritty -e nmtui)
+	s/ (cmd dmenu_exit)
+	su (cmd steam)
+	si (cmd heroic)
+	so (cmd gimp)
+	sp (cmd krita)
+	mu (cmd amixer -q set Master 5%+ unmute)
+	mj (cmd amixer -q set Master 5%- unmute)
+	mm (cmd amixer -q set Master toggle)
+	mi (cmd light -A 5)
+	mk (cmd light -U 5)
+	m, (cmd light -S 100)
+	ml (cmd screenshot)
+)
+
+(deflayer spawn
+	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+	_	_	_	_	_	_	_	_	_	_	_	_	_	_		_	_	_	_
+	_	_	_	_	_	_	_	@su	@si	@so	@sp	_	_	_		_	_	_	_
+	_	_	_	_	_	_	_	@sj	@sk	@sl	@s;	_	_			_	_	_
+	_	_	_	_	_	_	_	@sm	@s,	@s.	@s/	_	_			_	_	_	_
+	_	_	_			_			_	_	_	_	_	_			_	_
+)
+
+(deflayer media
+	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+	_	_	_	_	_	_	_	_	_	_	_	_	_	_		_	_	_	_
+	_	_	_	_	_	_	_	@mu	@mi	_	_	_	_	_		_	_	_	_
+	_	_	_	_	_	_	_	@mj	@mk	@ml	_	_	_			_	_	_
+	_	_	_	_	_	_	_	@mm	@m,	_	_	_	_			_	_	_	_
+	_	_	_			_			_	_	_	_	_	_			_	_
+)
+
+(defalias
+	wfl (cmd bspc node -f east)
+	wfj (cmd bspc node -f west)
+	wfk (cmd bspc node -f south)
+	wfi (cmd bspc node -f north)
+	wfu (cmd bspc node '@parent' -R -90)
+	wfo (cmd bspc node '@parent' -R 90)
+	wfm (cmd bspc node -c)
+	wf, (cmd bspc node -k)
+	wf. (cmd bspc quit)
+	wfw (cmd bspc desktop -f 1)
+	wfe (cmd bspc desktop -f 2)
+	wfr (cmd bspc desktop -f 3)
+	wfs (cmd bspc desktop -f 4)
+	wfd (cmd bspc desktop -f 5)
+	wff (cmd bspc desktop -f 6)
+	wfx (cmd bspc desktop -f 7)
+	wfc (cmd bspc desktop -f 8)
+	wfv (cmd bspc desktop -f 9)
+	wrl (cmd sh -c "bspc node --resize right 200 0 || bspc node --resize left 200 0")
+	wrj (cmd sh -c "bspc node --resize right -200 0 || bspc node --resize left -200 0")
+	wrk (cmd sh -c "bspc node --resize bottom 0 200 || bspc node --resize top 0 200")
+	wri (cmd sh -c "bspc node --resize bottom 0 -200 || bspc node --resize top 0 -200")
+	wrw (cmd bspc node -d 1)
+	wre (cmd bspc node -d 2)
+	wrr (cmd bspc node -d 3)
+	wrs (cmd bspc node -d 4)
+	wrd (cmd bspc node -d 5)
+	wrf (cmd bspc node -d 6)
+	wrx (cmd bspc node -d 7)
+	wrc (cmd bspc node -d 8)
+	wrv (cmd bspc node -d 9)
+	wrm (cmd bspc node -t tiled)
+	wr, (cmd bspc node -t fullscreen)
+	wr. (cmd bspc node -t floating)
+	wsl (cmd bspc node -s right)
+	wsj (cmd bspc node -s left)
+	wsk (cmd bspc node -s down)
+	wsi (cmd bspc node -s up)
+	wsf (cmd bspc node -v 20 0)
+	wss (cmd bspc node -v -20 0)
+	wsd (cmd bspc node -v 0 20)
+	wse (cmd bspc node -v 0 -20)
+)
+
+(deflayer bspwm-focus
+	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+	_	_	_	_	_	_	_	_	_	_	_	_	_	_		_	_	_	_
+	_	_	@wfw	@wfe	@wfr	_	_	@wfu	@wfi	@wfo	_	_	_	_		_	_	_	_
+	_	_	@wfs	@wfd	@wff	_	_	@wfj	@wfk	@wfl	_	_	_			_	_	_
+	_	_	@wfx	@wfc	@wfv	_	_	@wfm	@wf,	@wf.	_	_	_			_	_	_	_
+	_	_	_			_			_	_	_	_	_	_			_	_
+)
+
+(deflayer bspwm-resize
+	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+	_	_	_	_	_	_	_	_	_	_	_	_	_	_		_	_	_	_
+	_	_	@wrw	@wre	@wrr	_	_	_	@wri	_	_	_	_	_		_	_	_	_
+	_	_	@wrs	@wrd	@wrf	_	_	@wrj	@wrk	@wrl	_	_	_			_	_	_
+	_	_	@wrx	@wrc	@wrv	_	_	@wrm	@wr,	@wr.	_	_	_			_	_	_	_
+	_	_	_			_			_	_	_	_	_	_			_	_
+)
+
+(deflayer bspwm-swap
+	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+	_	_	_	_	_	_	_	_	_	_	_	_	_	_		_	_	_	_
+	_	_	_	@wse	_	_	_	_	@wsi	_	_	_	_	_		_	_	_	_
+	_	_	@wss	@wsd	@wsf	_	_	@wsj	@wsk	@wsl	_	_	_			_	_	_
+	_	_	_	_	_	_	_	_	_	_	_	_	_			_	_	_	_
+	_	_	_			_			_	_	_	_	_	_			_	_
+)
+
+(deflayer blank
+	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+	_	_	_	_	_	_	_	_	_	_	_	_	_	_		_	_	_	_
+	_	_	_	_	_	_	_	_	_	_	_	_	_	_		_	_	_	_
+	_	_	_	_	_	_	_	_	_	_	_	_	_			_	_	_
+	_	_	_	_	_	_	_	_	_	_	_	_	_			_	_	_	_
+	_	_	_			_			_	_	_	_	_	_			_	_
+)

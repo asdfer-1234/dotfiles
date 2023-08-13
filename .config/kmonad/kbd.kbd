@@ -1,0 +1,66 @@
+;; asdfer's config
+
+(defcfg
+  input (device-file "/dev/input/by-id/usb-GIGABYTE_USB-HID_Keyboard_AP0000000003-event-kbd")
+  output (uinput-sink "My KMonad output")
+  allow-cmd true
+  fallthrough true
+)
+
+
+(defsrc
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  pause del  home pgup pgdn end
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc       nlck kp/  kp*  kp-
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \          kp7  kp8  kp9  kp+
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret             kp4  kp5  kp6
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft up              kp1  kp2  kp3  kprt
+  lctl lmet lalt           spc            ralt cmp  rctl left down rght       kp0  kp.
+  ins  ssrq slck
+)
+
+(defalias
+  ena (tap-next esc (layer-toggle navigation))
+
+  ma (tap-next-press a lalt)
+  ms (tap-next-press s lmet)
+  md (tap-next-press d lsft)
+  mf (tap-next-press f lctl)
+  
+  m; (tap-next-press ; ralt)
+  ml (tap-next-press l rmet)
+  mk (tap-next-press k rsft)
+  mj (tap-next-press j rctl)
+
+  spcs (tap-next-press spc (layer-toggle symbol))
+)
+
+(deflayer base
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  pause del  home pgup pgdn end
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc       nlck kp/  kp*  kp-
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \          kp7  kp8  kp9  kp+
+  @ena @ma  @ms  @md  @mf  g    h    @mj  @mk  @ml  @m;  '    ret             kp4  kp5  kp6
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft up              kp1  kp2  kp3  kprt
+  lctl lmet lalt           @spcs       hangeul cmp  rctl left down rght       kp0  kp.
+  ins  ssrq slck
+)
+
+(deflayer navigation
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _    _
+  _    _    _    _    _    _    _    home up   end  del  _    _    _          _    _    _    _
+  _    lalt lmet lsft lctl _    _    left down rght bspc _    _               _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _               _    _    _    _
+  _    _    _              _              _    _    _    _    _    _          _    _
+  _    _    _
+)
+
+
+(deflayer symbol
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _    _
+  _    &    *    /    \    _    _    @    #    %    _    _    _    _          _    _    _    _
+  _    +    =    -    \_   _    _    \(   \)   {    }    _    _               _    _    _
+  _    ~    |    ^    $    _    _    [    ]    <    >    _    _               _    _    _    _
+  _    _    _              _              _    _    _    _    _    _          _    _
+  _    _    _
+)
