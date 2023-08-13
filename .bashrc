@@ -26,6 +26,7 @@ alias gb='git branch'
 alias gh='git checkout'
 alias ll='ls -alh --sort extension'
 alias run='make && ./a.out'
+alias c='cd ..'
 
 mkcdir () {
 	mkdir -p -- "$1" &&
