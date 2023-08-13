@@ -54,3 +54,4 @@ PS2='\[$LGRAY\]└─── \[$RESET\]\[$PROMPT\]'
 
 # always keep the cursor to the bottom of the screen!!!!
 blear
+cd

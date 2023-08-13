@@ -45,13 +45,13 @@ super + Return
 	alacritty
 
 super + a
-	firefox
+	qutebrowser
 
 super + s
 	screenshot
 
 super + d
-	discord
+	webcord
 
 super + {r, f}
 	amixer -q set Master {5%+, 5%-} unmute

@@ -9,8 +9,6 @@ EnumerateForwardKeys=
 EnumerateBackwardKeys=
 # Skip first input method while enumerating
 EnumerateSkipFirst=False
-# Enumerate Input Method Group Forward
-EnumerateGroupForwardKeys=
 # Enumerate Input Method Group Backward
 EnumerateGroupBackwardKeys=
 # Activate Input Method
@@ -29,7 +27,10 @@ NextCandidate=
 TogglePreedit=
 
 [Hotkey/TriggerKeys]
-0=Hangul
+0=Tools
+
+[Hotkey/EnumerateGroupForwardKeys]
+0=Super+Z
 
 [Behavior]
 # Active By Default

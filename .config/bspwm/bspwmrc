@@ -13,11 +13,13 @@ bspc config gapless_monocle true
 
 bspc config click_to_focus any
 
+bspc rule -a emacs desktop=^2
 bspc rule -a discord desktop=^4 follow=off
 bspc rule -a deadbeef desktop=^9
 
-sxhkd -c ~/.config/bspwm/sxhkd &
 ~/.config/eww/start.sh &
+sleep 1
+~/.config/autostart.sh &
 
 # g="$(bspc config window_gap)"
 # [[ "$g" -gt 0 ]] && for p in top bottom left right; do

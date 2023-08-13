@@ -53,8 +53,7 @@ redshift &
 export _JAVA_AWT_WM_NONREPARENTING=1
 export AWT_TOOLKIT=MToolkit
 
-# discord
-#discord &
+# start programs
 
 # set default cursor
 xsetroot -cursor_name left_ptr

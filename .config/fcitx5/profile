@@ -1,14 +1,14 @@
 [Groups/0]
 # Group Name
-Name=Default
+Name=Latin
 # Layout
-Default Layout=us
+Default Layout=us-cz_sk_pl_de_es_fi_sv
 # Default Input Method
 DefaultIM=hangul
 
 [Groups/0/Items/0]
 # Name
-Name=keyboard-us
+Name=keyboard-us-cz_sk_pl_de_es_fi_sv
 # Layout
 Layout=
 
@@ -18,6 +18,27 @@ Name=hangul
 # Layout
 Layout=
 
+[Groups/1]
+# Group Name
+Name=Default
+# Layout
+Default Layout=us
+# Default Input Method
+DefaultIM=hangul
+
+[Groups/1/Items/0]
+# Name
+Name=keyboard-us
+# Layout
+Layout=
+
+[Groups/1/Items/1]
+# Name
+Name=hangul
+# Layout
+Layout=
+
 [GroupOrder]
 0=Default
+1=Latin
 
