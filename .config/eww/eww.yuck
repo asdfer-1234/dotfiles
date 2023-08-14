@@ -11,10 +11,13 @@
 (defpoll batterystatus :interval "10s" `./batterystatus.sh`)
 (defvar workspaces "")
 
-(defwidget status_property[icon value]
-	(box :orientation "vertical" :space-evenly false :spacing 0 :class "block"
-		(label :class "status-icon" :halign "center" :text icon)
-		(label :class "status-value" :halign "center" :text value)))
+(defwidget status-block[icon value ?text-class ?reveal]
+	(revealer :transition "slideup" :reveal reveal :duration "200ms"
+		(box :orientation "vertical" :space-evenly false :spacing 0
+			(box :orientation "vertical" :space-evenly false :spacing 0 :class "status-block"
+				(label :halign "center" :text icon :class text-class)
+				(label :halign "center" :text {round(value, 0)} :class text-class))
+			(progress :value value :orientation "h" :class text-class))))
 
 (defwidget time[]
 	(box :orientation "vertical" :spacing 4 :space-evenly false
@@ -51,15 +54,11 @@
 	(centerbox :orientation "vertical"
 		(workspaces :valign "start")
 		(time)
-		(box :orientation "vertical" :spacing 4 :valign "end"
-			(box :class "status-volume" :visible {volume != ""}
-				(status_property :icon "" :value volume))
-			(box :class "status-battery" :visible {batterystatus != "Full"}
-				(status_property :class "status-battery" :icon batteryicon :value battery))
-			(box :class "status-resource"
-				(status_property :icon "RAM" :value {round(EWW_RAM.used_mem_perc, 0)}))
-			(box :class "status-resource"
-				(status_property :icon "CPU" :value {round(EWW_CPU.avg, 0)})))))
+		(box :orientation "vertical" :spacing 4 :valign "end" :space-evenly false
+			(status-block :icon "" :value volume :reveal {volume != ""} :text-class "volume")
+			(status-block :class "status-battery" :icon batteryicon :value battery :reveal {batterystatus != "Full"} :text-class "battery")
+			(status-block :icon "RAM" :value {EWW_RAM.used_mem_perc} :reveal true :text-class "resource")
+			(status-block :icon "CPU" :value {EWW_CPU.avg} :reveal true :text-class "resource"))))
 (defwindow status
 	:monitor 0
 	:windowtype "dock"
@@ -67,7 +66,7 @@
 		:y 0
 		:x 0
 		:height "100%")
-	:reserve (struts :distance "39px" :side "left")
+	:reserve (struts :distance "39" :side "left")
 	:stacking "bg"
 	(status_layout))
 

@@ -3,16 +3,25 @@
 	font-family: "Cozette";
 }
 
-.status-volume {
+.volume {
 	color: #fb4934;
+	progress{
+		background: #fb4934;
+	}
 }
 
-.status-battery {
+.battery {
 	color: #fabd2f;
+	progress{
+		background: #fabd2f;
+	}
 }
 
-.status-resource {
+.resource {
 	color: #83a598;
+	progress{
+		background: #83a598;
+	}
 }
 
 .block {
@@ -20,9 +29,14 @@
 	padding: 3px 4px 3px 4px;
 }
 
+.status-block {
+	background: #504945;
+	padding: 3px;
+}
+
 .secondary-block {
 	background: #3c3836;
-	padding: 3px 4px 3px 4px;
+	padding: 3px;
 }
 
 .date {
@@ -41,7 +55,7 @@
 .focused {
 	background: #8ec07c;
 	padding: 8px 4px 8px 4px;
-	font-weight: bold;
+	font-weight:bold;
 }
 
 
@@ -55,3 +69,17 @@ window > * {
 	padding: 4px 6px 4px 4px;
 }
 
+
+progressbar trough{
+	background: #504945;
+	min-height: 1px;
+	min-width: 1px;
+	padding: 0px;
+	margin: 0px;
+
+}
+
+progress{
+	background: #98971a;
+	min-height: 1px;
+}
