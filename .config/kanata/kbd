@@ -76,7 +76,7 @@
 (defalias
 	sj (cmd emacs)
 	sk (cmd librewolf)
-	sl (cmd alacritty)
+	sl (cmd sh -c "alacritty --working-directory ~")
 	s; (cmd dmenu_run)
 	sm (cmd webcord)
 	s, (cmd unityhub)
