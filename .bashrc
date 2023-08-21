@@ -52,7 +52,7 @@ LGRAY="$(tput setaf 8)"
 BLINK="$(tput blink)"
 PROMPT="$(tput setaf 10)"
 PS0='\[$RESET\]'
-PS1='\[$LGRAY\]┌\[$BOLD\]\[$WHITE\][\[$CYAN\]$(dirs)\[$RESET\]\[$BOLD\]]\n\[$RESET\]\[$LGRAY\]└\[$BOLD\]\[$WHITE\][\[$YELLOW\]\$\[$RESET\]\[$BOLD\]] \[$RESET\]\[$PROMPT\]'
+PS1='\n\[$LGRAY\]┌\[$BOLD\]\[$WHITE\][\[$CYAN\]$(dirs)\[$RESET\]\[$BOLD\]]\n\[$RESET\]\[$LGRAY\]└\[$BOLD\]\[$WHITE\][\[$YELLOW\]\$\[$RESET\]\[$BOLD\]] \[$RESET\]\[$PROMPT\]'
 PS2='\[$LGRAY\]└─── \[$RESET\]\[$PROMPT\]'
 
 # always keep the cursor to the bottom of the screen!!!!
