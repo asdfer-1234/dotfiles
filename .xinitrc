@@ -23,7 +23,7 @@ picom &
 fcitx5 &
 
 # keyboard rate
-xset r rate 200 30
+xset r rate 400 30
 
 # background to fill whole screen 1px image
 #feh --no-fehbg --bg-tile /home/asdfer/personal/background/dotgrid.png
