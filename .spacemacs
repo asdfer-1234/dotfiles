@@ -32,14 +32,13 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(python
+   '(
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      auto-completion
-     ;; better-defaults
      emacs-lisp
      git
      helm
@@ -47,15 +46,17 @@ This function should only modify configuration layer settings."
      markdown
      multiple-cursors
      org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
-     ;; spell-checking
-     ;; syntax-checking
-     ;; version-control
+     (shell :variables
+            shell-default-height 30
+            shell-default-position 'bottom)
+     spell-checking
+     syntax-checking
+     version-control
      treemacs
+     colors
      themes-megapack
-     (c-c++ :variables c-c++-enable-clang-support t))
+     (c-c++ :variables c-c++-enable-clang-support t)
+     python)
 
 
    ;; List of additional packages that will be installed without being wrapped
@@ -240,7 +241,8 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(gruvbox
-                         gruvbox-light-soft)
+                         solarized-light)
+
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
@@ -249,7 +251,7 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(spacemacs :separator wave)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -398,11 +400,12 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil smooth scrolling (native-scrolling) is enabled. Smooth
    ;; scrolling overrides the default behavior of Emacs which recenters point
    ;; when it reaches the top or bottom of the screen. (default t)
-   dotspacemacs-smooth-scrolling t
+   dotspacemacs-smooth-scrolling true
+
 
    ;; Show the scroll bar while scrolling. The auto hide time can be configured
    ;; by setting this variable to a number. (default t)
-   dotspacemacs-scroll-bar-while-scrolling t
+   dotspacemacs-scroll-bar-while-scrolling nil
 
    ;; Control line numbers activation.
    ;; If set to `t', `relative' or `visual' then line numbers are enabled in all
@@ -518,6 +521,7 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil shift your number row to match the entered keyboard layout
    ;; (only in insert state). Currently supported keyboard layouts are:
    ;; `qwerty-us', `qwertz-de' and `querty-ca-fr'.
+
    ;; New layouts can be added in `spacemacs-editing' layer.
    ;; (default nil)
    dotspacemacs-swap-number-row nil
@@ -563,6 +567,46 @@ This function is called only while dumping Spacemacs configuration. You can
 dump."
 )
 
+(defun org-setup ()
+  (setq org-startup-indented t)
+  (defun my-org-mode-hook ()
+    (setq org-superstar-headline-bullets-list '("*")
+          org-hide-leading-stars t
+          org-superstar-leading-bullet nil
+          org-M-RET-may-split-line nil)
+    (message "my-org-mode-hook triggered"))
+  (add-hook 'org-mode-hook 'my-org-mode-hook))
+
+(defun c-setup ()
+  (defun my-c-mode-hook ()
+    (setq c-default-style "linux"
+          c-basic-offset 8
+          c-label-offset 0
+          tab-width 8
+          indent-tabs-mode t)
+    (message "my-c-mode-hook triggered"))
+  (add-hook 'c-mode-hook 'my-c-mode-hook))
+
+(defun disable-fd-quick-shortcut ()
+  (setq-default evil-escape-key-sequence nil))
+
+(defun extend-word-definition ()
+  (add-hook 'prog-mode-hook #'(lambda ()
+                                (modify-syntax-entry ?_ "w")
+                                (modify-syntax-entry ?- "w"))))
+
+
+(defun enter-to-put-empty-line ()
+  (define-key evil-normal-state-map (kbd "RET")
+              (lambda ()
+                (interactive)
+                (call-interactively 'spacemacs/evil-insert-line-below)
+                (evil-next-line))))
+
+(defun set-scroll-margin ()
+  (setq-default scroll-margin 20
+                smooth-scroll-margin 20))
+
 
 (defun dotspacemacs/user-config ()
   "Configuration for user code:
@@ -570,24 +614,12 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  (setq org-superstar-headline-bullets-list '("*"))
-  (setq org-hide-leading-stars nil)
-  (setq org-superstar-leading-bullet ?\s)
-  (setq org-startup-indented t)
-  (setq org-M-RET-may-split-line nil)
-
-  (setq-default indent-tabs-mode t)
-  (setq-default tab-width 4)
-  (defun my-generate-tab-stops (&optional width max)
-    "Return a sequence suitable for `tab-stop-list'."
-    (let* ((max-column (or max 200))
-           (tab-width (or width tab-width))
-           (count (/ max-column tab-width)))
-      (number-sequence tab-width (* tab-width count) tab-width)))
-
-  (setq-default tab-stop-list (my-generate-tab-stops))
-  (setq-default c-basic-offset 4)
-)
+  (org-setup)
+  (c-setup)
+  (disable-fd-quick-shortcut)
+  (extend-word-definition)
+  (enter-to-put-empty-line)
+  (set-scroll-margin))
 
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -603,7 +635,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(blacken code-cells company-anaconda anaconda-mode counsel-gtags counsel swiper ivy cython-mode ggtags helm-cscope helm-pydoc importmagic epc ctable concurrent live-py-mode lsp-pyright lsp-python-ms nose pip-requirements pipenv load-env-vars pippel poetry py-isort pydoc pyenv-mode pythonic pylookup pytest pyvenv sphinx-doc stickyfunc-enhance xcscope yapfify dap-mode lsp-docker bui ccls company-c-headers company-rtags company-ycmd cpp-auto-include disaster flycheck-rtags flycheck-ycmd gendoxy google-c-style helm-rtags rtags ycmd request-deferred deferred flycheck-pos-tip pos-tip helm-lsp lsp-origami origami lsp-treemacs lsp-ui lsp-mode ac-ispell auto-complete auto-yasnippet fuzzy helm-c-yasnippet helm-company company yasnippet-snippets yasnippet afternoon-theme alect-themes ample-theme ample-zen-theme anti-zenburn-theme apropospriate-theme badwolf-theme birds-of-paradise-plus-theme bubbleberry-theme busybee-theme cherry-blossom-theme chocolate-theme clues-theme color-theme-sanityinc-solarized color-theme-sanityinc-tomorrow cyberpunk-theme dakrone-theme darkmine-theme darkokai-theme darktooth-theme django-theme doom-themes dracula-theme espresso-theme exotica-theme eziam-themes farmhouse-themes flatland-theme flatui-theme gandalf-theme gotham-theme grandshell-theme gruber-darker-theme gruvbox-theme hc-zenburn-theme hemisu-theme heroku-theme inkpot-theme ir-black-theme jazz-theme jbeans-theme kaolin-themes light-soap-theme lush-theme madhat2r-theme majapahit-themes material-theme minimal-theme modus-themes moe-theme molokai-theme monochrome-theme monokai-theme mustang-theme naquadah-theme noctilux-theme obsidian-theme occidental-theme oldlace-theme omtose-phellack-theme organic-green-theme phoenix-dark-mono-theme phoenix-dark-pink-theme planet-theme professional-theme purple-haze-theme railscasts-theme rebecca-theme reverse-theme seti-theme smyx-theme soft-charcoal-theme soft-morning-theme soft-stone-theme solarized-theme soothe-theme autothemer spacegray-theme subatomic-theme subatomic256-theme sublime-themes sunny-day-theme tango-2-theme tango-plus-theme tangotango-theme tao-theme toxi-theme twilight-anti-bright-theme twilight-bright-theme twilight-theme ujelly-theme underwater-theme white-sand-theme zen-and-art-theme zenburn-theme zonokai-emacs evil-org gh-md gnuplot helm-org-rifle htmlize markdown-toc mmm-mode org-cliplink org-contrib org-download org-mime org-pomodoro alert log4e gntp org-present org-projectile org-category-capture org-rich-yank orgit-forge orgit forge yaml markdown-mode ghub closql emacsql treepy git-link git-messenger git-modes git-timemachine gitignore-templates helm-git-grep helm-ls-git org smeargle treemacs-magit magit magit-section git-commit with-editor transient ws-butler writeroom-mode winum which-key volatile-highlights vim-powerline vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org term-cursor symon symbol-overlay string-inflection string-edit-at-point spacemacs-whitespace-cleanup spacemacs-purpose-popwin spaceline space-doc restart-emacs request rainbow-delimiters quickrun popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line macrostep lorem-ipsum link-hint inspector info+ indent-guide hybrid-mode hungry-delete holy-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-descbinds helm-ag google-translate golden-ratio flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-evilified-state evil-escape evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav elisp-def editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile all-the-icons aggressive-indent ace-link ace-jump-helm-line)))
+   '(auto-dictionary browse-at-remote esh-help eshell-prompt-extras eshell-z flyspell-correct-helm flyspell-correct git-gutter-fringe fringe-helper git-gutter multi-term multi-vterm shell-pop terminal-here vterm xterm-color dap-mode lsp-docker bui ccls flycheck-pos-tip pos-tip flycheck-rtags flycheck-ycmd helm-lsp lsp-origami origami lsp-pyright lsp-python-ms lsp-treemacs lsp-ui lsp-mode ac-ispell afternoon-theme alect-themes ample-theme ample-zen-theme anti-zenburn-theme apropospriate-theme auto-complete auto-yasnippet badwolf-theme birds-of-paradise-plus-theme blacken bubbleberry-theme busybee-theme cherry-blossom-theme chocolate-theme clues-theme code-cells color-theme-sanityinc-solarized color-theme-sanityinc-tomorrow company-anaconda anaconda-mode company-c-headers company-rtags company-ycmd cpp-auto-include cyberpunk-theme cython-mode dakrone-theme darkmine-theme darkokai-theme darktooth-theme disaster django-theme doom-themes dracula-theme espresso-theme evil-org exotica-theme eziam-themes farmhouse-themes flatland-theme flatui-theme fuzzy gandalf-theme gendoxy gh-md git-link git-messenger git-modes git-timemachine gitignore-templates gnuplot google-c-style gotham-theme grandshell-theme gruber-darker-theme gruvbox-theme hc-zenburn-theme helm-c-yasnippet helm-company company helm-git-grep helm-ls-git helm-org-rifle helm-pydoc helm-rtags hemisu-theme heroku-theme htmlize importmagic epc ctable concurrent inkpot-theme ir-black-theme jazz-theme jbeans-theme kaolin-themes light-soap-theme live-py-mode lush-theme madhat2r-theme majapahit-themes markdown-toc material-theme minimal-theme mmm-mode modus-themes moe-theme molokai-theme monochrome-theme monokai-theme mustang-theme naquadah-theme noctilux-theme nose obsidian-theme occidental-theme oldlace-theme omtose-phellack-theme org-cliplink org-contrib org-download org-mime org-pomodoro alert log4e gntp org-present org-projectile org-category-capture org-rich-yank organic-green-theme orgit-forge orgit forge yaml markdown-mode ghub closql emacsql treepy phoenix-dark-mono-theme phoenix-dark-pink-theme pip-requirements pipenv load-env-vars pippel planet-theme poetry professional-theme purple-haze-theme py-isort pydoc pyenv-mode pythonic pylookup pytest pyvenv railscasts-theme rebecca-theme reverse-theme rtags seti-theme smeargle smyx-theme soft-charcoal-theme soft-morning-theme soft-stone-theme solarized-theme soothe-theme autothemer spacegray-theme sphinx-doc subatomic-theme subatomic256-theme sublime-themes sunny-day-theme tango-2-theme tango-plus-theme tangotango-theme tao-theme toxi-theme treemacs-magit magit magit-section git-commit with-editor transient twilight-anti-bright-theme twilight-bright-theme twilight-theme ujelly-theme underwater-theme white-sand-theme yapfify yasnippet-snippets yasnippet ycmd request-deferred deferred zen-and-art-theme zenburn-theme zonokai-emacs ws-butler writeroom-mode winum which-key volatile-highlights vim-powerline vi-tilde-fringe uuidgen undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org term-cursor symon symbol-overlay string-inflection string-edit-at-point spacemacs-whitespace-cleanup spacemacs-purpose-popwin spaceline space-doc restart-emacs request rainbow-delimiters quickrun popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line macrostep lorem-ipsum link-hint inspector info+ indent-guide hybrid-mode hungry-delete holy-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-descbinds helm-ag google-translate golden-ratio flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-evilified-state evil-escape evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav elisp-def editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile all-the-icons aggressive-indent ace-link ace-jump-helm-line)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -611,3 +643,4 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  )
 )
+
