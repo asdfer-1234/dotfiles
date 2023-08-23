@@ -36,9 +36,6 @@ mkcdir () {
 alias md='mkcdir'
 alias ddx='dragon-drop -x'
 
-# idk man. without this alias the whole system would break
-alias 2023='echo YEAR OF THE LINUX DESKTOP'
-
 # set editing style to vi
 set -o vi
 
