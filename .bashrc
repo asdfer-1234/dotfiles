@@ -1,5 +1,5 @@
 # replacement aliases
-alias ls='exa --color=auto --group-directories-first --sort extension'
+alias ls='eza --color=auto --group-directories-first --sort extension'
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
 alias ip='ip -color=auto'

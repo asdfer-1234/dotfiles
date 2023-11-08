@@ -41,6 +41,7 @@ text_editor/theme/highlighting/search_result_color = Color(0, 0, 0, 0.07)
 text_editor/theme/highlighting/search_result_border_color = Color(0, 0.4, 1, 0.38)
 text_editor/behavior/indent/size = 6
 text_editor/completion/code_complete_delay = 0.01
+project_manager/default_renderer = "mobile"
 asset_library/available_urls = {
 "godotengine.org (Official)": "https://godotengine.org/asset-library/api"
 }
@@ -151,9 +152,15 @@ text_editor/help/sort_functions_alphabetically = true
 text_editor/theme/base_color = Color(0.903598, 0.903598, 0.903598, 1)
 docks/scene_tree/ask_before_deleting_related_animation_tracks = true
 metadata/script_setup_templates_dictionary = {
+"Area2D": "0NodeDefault",
 "AudioStreamPlayer": "0NodeDefault",
+"Button": "0NodeDefault",
 "CollisionShape3D": "0NodeDefault",
+"Control": "0NodeDefault",
 "Label": "0NodeDefault",
+"LineEdit": "0NodeDefault",
 "Node": "0NodeDefault",
-"Path2D": "0NodeDefault"
+"Node2D": "0NodeDefault",
+"Path2D": "0NodeDefault",
+"RichTextLabel": "0NodeDefault"
 }

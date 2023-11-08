@@ -58,7 +58,8 @@
 			(status-block :icon "" :value volume :reveal {volume != ""} :text-class "volume")
 			(status-block :class "status-battery" :icon batteryicon :value battery :reveal {batterystatus != "Full"} :text-class "battery")
 			(status-block :icon "RAM" :value {EWW_RAM.used_mem_perc} :reveal true :text-class "resource")
-			(status-block :icon "CPU" :value {EWW_CPU.avg} :reveal true :text-class "resource"))))
+			(status-block :icon "CPU" :value {EWW_CPU.avg} :reveal true :text-class "resource")
+		)))
 (defwindow status
 	:monitor 0
 	:windowtype "dock"
